@@ -23,11 +23,15 @@
                         v-model="login.password"/>
 
                     <!-- login button -->
-                    <center>
+                    <!-- <center>
                         <button class="btn btn-primary btn-block w-75 my-4" 
                         type="submit">
                         Inicio de sesión</button>
-                    </center>
+                    </center> -->
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                        <button class="btn btn-primary" @click="redirectToSignup()">Registrarse</button>
+                    </div>
                 </form>
             </div>
         </div>   
@@ -46,6 +50,11 @@ export default {
         }
     },
     methods: {
+
+         redirectToSignup(){
+             this.$router.push({ path: '/signup' })
+             },
+
         async loginUser(){
             try{
                 let response = await this.$http.post("/api/auth/signin", this.login)
